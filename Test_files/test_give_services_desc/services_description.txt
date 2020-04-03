@@ -1,0 +1,3 @@
+INTERNET - MB - -1
+CALL - c - -0.01 -0.005 (n
+SMS - sms - -1 ()

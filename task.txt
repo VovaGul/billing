@@ -1,0 +1,29 @@
+___РЕШЕННЫЕ___:
+
+не знаю как указать когда закончилось предоставление услуги
+просто через дату окончания тупа вроде (именно так)
+
+не учитывается что продоставление опции может окончится после завершения тарифа
+
+реализовать модификаторы (их определение записано в readme)
+
+    в Client
+
+    def append_service(self, services_desc, date, operation, coef, detailing):
+        """добавляет счет за услугу"""
+        if detailing:
+            self.bill.extend((str(coef), ' ', services_desc[operation].unit, ' '))
+        for rate in self.rates:
+            if rate.start <= date <= rate.end and operation in rate.options and rate.options[operation] != 0:
+                self.append_service_in_rate(services_desc, rate, operation, coef, detailing)
+                return
+        score_oper = services_desc[operation].coef * coef
+        if detailing:
+            self.bill.extend((str(score_oper), ' ', CURRENCY, '\n'))
+        self.score += score_oper
+
+    score_oper = services_desc[operation].coef * coef
+
+    нужно что бзависело от времени
+
+программа не умеет выбирать выгодный тариф для списания счета
